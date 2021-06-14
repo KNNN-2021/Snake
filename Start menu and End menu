@@ -1,0 +1,73 @@
+// màn hình bắt đầu trò chơi 
+void showStartMenu()
+{
+	system("cls");
+	cout << "Chao mung ban den voi game con ran cua nhom bon minh!" << endl;
+	cout << "Moi ban lua chon:" << endl;
+	cout << "1. Bat dau vao choi." << endl;
+	cout << "2. Thoat." << endl;
+	cout << "Lua chon cua ban la: ";
+	int option;
+	cin >> option;
+	if (option == 1)
+	{
+		system("cls");
+		cout << "Chung toi co 5 level, level cang cao thi toc do cang cao. " << endl;
+		cout << "Hay chon level cho minh (1 - 5): ";
+		int t;
+		cin >> t;
+		speed = 600 - t * 100; // công thức tính tốc độ tùy vào level được chọn 
+		system("cls");
+		cout << "Tip: Trong khi choi, ban co the an 't' de thoat ngay" << endl;
+		cout << "Neu ban dam vao tuong, ban se chet ngay day, nen dung dai dot :)" << endl;
+		cout << "Cach choi: " << endl;
+		cout << "w: len" << endl;
+		cout << "s: xuong" << endl;
+		cout << "a: qua trai" << endl;
+		cout << "d: qua phai" << endl;
+		gotoxy(0, 9);
+		cout << "Ready!";
+		gotoxy(0, 9);
+		cout << "      ";
+		gotoxy(0, 9);
+		cout << "GO!";
+		Sleep(1000);
+		startGame();
+	}
+	else if (option == 2)
+		exit(1);
+}
+
+// màn hình kết thúc
+void showEndMenu()
+{
+	system("cls");
+	gotoxy(0, 0);
+	cout << "Game over!" << endl;
+	cout << "Diem cua ban la: " << score << endl;
+	cout << "Ban co muon choi lai khong?(1: yes; 0: no) ([1]/[0]): ";
+	char option;
+	cin >> option;
+	option = tolower(option);
+	if (option == '1')
+	{
+		resetSnake();
+		startGame();
+	}
+	else if (option == '0')
+		exit(1);
+} 
+
+// khởi tạo lại rắn nếu tiếp tục chơi sau khi thua 
+void resetSnake()
+{
+	score = 0;
+	direction = Direction::right;
+	snake = {
+		Point{ WIDTH / 2 + 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 + 1, HEIGHT / 2 },
+		Point{ WIDTH / 2, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 1, HEIGHT / 2 },
+		Point{ WIDTH / 2 - 2, HEIGHT / 2 }
+	};
+}
